@@ -1,5 +1,5 @@
 ## Inspiration
-Recently I have been having to deal with map related data I found was sorely missing a way to calculate distances and travel times between locations from within Excel. 
+Recently I have been having to deal with map related data I found I was sorely missing a way to calculate distances and travel times between locations from within Excel. 
 
 I have been searching for apartments and I wanted a function that could take the apartment address and calculate the commute time to work or the walking time to the nearest bus stop.
 
