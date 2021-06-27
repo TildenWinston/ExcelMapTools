@@ -7,23 +7,33 @@ Similarly, I have been planning a long, multi-day trip and would like a function
 
 ## What it does
 **mapDistance**
+
 Input: Origin, Destination, API Key
+
 mapDistance was the original function. It takes the two addresses and uses the Google directions API to get directions and other information. All that this function is interested in is the route distance. The route distance text version, which is already nicely formatted and includes units is returned as a string.
 
 **mapDistanceRawVal**
+
 Input: Origin, Destination, API Key
+
 Same as mapDistance, but the distance is returned as an integer value in meters. This value is easier to manipulate programmatically.
 
 **mapTime**
+
 Input: Origin, Destination, API Key
+
 Instead of returning distance, this function returns the time with units as a string.
 
 **mapTimeRawVal**
+
 Input: Origin, Destination, API Key
+
 Same as mapTime, except time value is turned as an integer number of seconds. Once again, this is easier to manipulate than the string version. The value returned here will be the starting point for finding the closest (by time) destination out of a list of destinations.
 
 **mapAllVal**
+
 Input: Origin, Destination, API Key
+
 This function returns all of the data in a single cell. While the data isn’t as pretty, parsing it directly in excel is easy enough and by returning multiple data points additional API calls can be avoided lowering costs. Trades off simplicity on the client side with cost on the server side.
 
 ## How we built it
@@ -53,3 +63,4 @@ I learned the basics of VBA and was reminded of how nice linting, autocomplete, 
 
 Alternatively, right click on the project tree in the left hand bar, click import file, and select MappingFunctions.bas
 
+6. JSON.bas and jsonEXT.bas will both also needed to be added in this manner. These files provide the JSON parsing library.
