@@ -243,7 +243,7 @@ End Function
 
 Sub test()
 
-MsgBox mapAllVal("Disneyland", "Universal Studios Hollywood", "AIzaSyA_8lzQLXXLaA8Zi9XLLtNZlcqah9M4-EM")
+    MsgBox mapAllVal("Disneyland", "Universal Studios Hollywood", "APIKEYGOESHERE")
 Debug.Print "No API Key for you!"
 Debug.Print "No API Key for you!"
 Debug.Print "No API Key for you!"
