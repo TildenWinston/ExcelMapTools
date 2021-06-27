@@ -64,3 +64,7 @@ I learned the basics of VBA and was reminded of how nice linting, autocomplete, 
 Alternatively, right click on the project tree in the left hand bar, click import file, and select MappingFunctions.bas
 
 6. JSON.bas and jsonEXT.bas will both also needed to be added in this manner. These files provide the JSON parsing library.
+
+
+Submitted to R.U. Hacking 2021 https://r-u-hacking-hackathon-2021.devpost.com/
+https://devpost.com/software/excel-mapping-tool-kit
