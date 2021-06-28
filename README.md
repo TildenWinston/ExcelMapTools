@@ -77,3 +77,7 @@ Alternatively, right click on the project tree in the left hand bar, click impor
 
 Submitted to R.U. Hacking 2021 https://r-u-hacking-hackathon-2021.devpost.com/
 https://devpost.com/software/excel-mapping-tool-kit
+
+
+## Resources & References
+https://stackoverflow.com/questions/218181/how-can-i-url-encode-a-string-in-excel-vba
