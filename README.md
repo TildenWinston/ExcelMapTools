@@ -53,6 +53,14 @@ I learned the basics of VBA and was reminded of how nice linting, autocomplete, 
 ## What's next for Excel Mapping Tool Kit
 * Closest destination function
 * Easier deployment
+* Switch to Azure to resolve GCP billing issues
+Stretch functions:
+* Different traffic models
+* Different leave/arrival time options
+* Elevation difference?
+* Geocoding
+* Place Details
+* Time Zones?
 
 ## Try it for yourself!
 1. Open Excel
