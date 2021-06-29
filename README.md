@@ -54,7 +54,7 @@ I learned the basics of VBA and was reminded of how nice linting, autocomplete, 
 * Closest destination function
 * Easier deployment
 * Switch to Azure to resolve GCP billing issues
-* 
+
 Stretch functions:
 * Different traffic models
 * Different leave/arrival time options
@@ -80,4 +80,6 @@ https://devpost.com/software/excel-mapping-tool-kit
 
 
 ## Resources & References
-https://stackoverflow.com/questions/218181/how-can-i-url-encode-a-string-in-excel-vba
+* https://stackoverflow.com/questions/218181/how-can-i-url-encode-a-string-in-excel-vba
+* https://stackoverflow.com/questions/15940047/passing-a-range-to-excel-user-defined-function-and-assigning-it-to-an-array
+* 
