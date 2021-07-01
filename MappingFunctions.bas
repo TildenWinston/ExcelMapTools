@@ -241,6 +241,85 @@ Function mapAllVal(address1 As String, address2 As String, apikey)
 
 End Function
 
+Function mapClosest(address1 As String, addresses As Range, apikey)
+    Debug.Print "Row count: " & addresses.Rows.Count
+    'Indexed from 1? Who does that???
+    Debug.Print addresses(1)
+    
+    Dim Responses()
+    ReDim Responses(addresses.Rows.Count)
+    Dim closest
+    Dim shortestTime As Long
+    shortestTime = 2147483647
+    'Debug.Print shortestTime
+    Dim closestAddress
+    
+    Dim encodedAddress1, encodedAddress2 As String
+    encodedAddress1 = WorksheetFunction.EncodeURL(address1)
+    
+    Dim i As Integer
+    For i = 1 To addresses.Rows.Count
+        Dim httpObject As Object
+        Set httpObject = CreateObject("MSXML2.XMLHTTP")
+        
+        encodedAddress2 = WorksheetFunction.EncodeURL(addresses(i))
+        
+        Dim sURL As String
+        sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+        
+        'Debug.Print "test"
+        
+        'Debug.Print sURL
+        
+        Dim sRequest, sGetResult As String
+        sRequest = sURL
+        httpObject.Open "GET", sRequest, False
+        httpObject.Send
+        sGetResult = httpObject.ResponseText
+        
+        Responses(i) = sGetResult
+        
+        Dim vJSON
+        Dim sState As String
+        
+        JSON.Parse sGetResult, vJSON, sState
+        If sState = "Error" Then MsgBox "Invalid JSON": End
+        
+        Dim durationRawValVal
+        Dim durationRawValExists
+    
+        jsonExt.selectElement vJSON, ".routes[0].legs[0].duration.value", durationRawValVal, durationRawValExists
+        
+        If (durationRawValVal < shortestTime) Then
+            shortestTime = durationRawValVal
+            closest = i
+            closestAddress = addresses(i)
+            'Debug.Print "test in if"
+        End If
+    Next i
+    
+    JSON.Parse Responses(closest), vJSON, sState
+    Dim durationRawValVal2
+    Dim durationRawValExists2
+    
+    
+    jsonExt.selectElement vJSON, ".routes[0].legs[0].duration.value", durationRawValVal2, durationRawValExists2
+    
+    Debug.Print "Shortest duration from json " & durationRawValVal2
+    Debug.Print "Shortest time val: " & shortestTime / 60
+    
+    'Range to normal VBA array
+    'Dim X
+    
+    'X = Application.Transpose(addresses)
+    'Debug.Print "X" & X(2)
+
+    mapClosest = (shortestTime / 60) & ":" & closestAddress
+    
+    'Debug.Print sGetResult
+
+End Function
+
 Sub test()
 
     MsgBox mapAllVal("Disneyland", "Universal Studios Hollywood", "APIKEYGOESHERE")
