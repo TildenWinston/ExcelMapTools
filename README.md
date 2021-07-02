@@ -55,6 +55,11 @@ Limitations: A maximum of 25 addresses can be given in the array
 **Notes on address format**
 Addresses for origin or destination can be given as Lat Long Pairs, Location names (usually), or full addresses. Geocodes and other google maps formats should theoretically work, but these are not validated.
 
+**Other notes**
+Strings must be explicit with quotes
+
+Transportation mode is an optional parameter, must be encased in quotes. 
+
 
 ## How we built it
 The custom functions are written in Visual Basic for Applications. The functions call the Google Directions API which returns JSON to parse. VBA and Excel are not well equipped for dealing with JSON, so I used a third party library, [VBA-JSON parser](https://github.com/omegastripes/VBA-JSON-parser),  to parse it.
