@@ -36,6 +36,26 @@ Input: Origin, Destination, API Key
 
 This function returns all of the data in a single cell. While the data isn’t as pretty, parsing it directly in excel is easy enough and by returning multiple data points additional API calls can be avoided lowering costs. Trades off simplicity on the client side with cost on the server side.
 
+**mapClosest**
+
+Input: Origin, Array of addresses, API Key
+
+This function returns time in minutes to the closest address in the array and it return the address in the format given of this closest point. If addresses are given in latitude and longitude, the same will be returned, etc. While the data isn’t as pretty, parsing it directly in excel is easy enough and by returning multiple data points additional API calls can be avoided lowering costs. Trades off simplicity on the client side with cost on the server side.
+This function is slow and Excel will possibly hang. If Excel stops responding, give it a few minutes to complete the function.
+
+**mapClosestMatrix**
+
+Input: Origin, Array of addresses, API Key
+
+This function returns time in minutes to the closest address in the array and it return the address in the format given of this closest point. If addresses are given in latitude and longitude, the same will be returned, etc. While the data isn’t as pretty, parsing it directly in excel is easy enough and by returning multiple data points additional API calls can be avoided lowering costs. Trades off simplicity on the client side with cost on the server side.
+This function is much faster than mapClosest.
+Limitations: A maximum of 25 addresses can be given in the array
+
+
+**Notes on address format**
+Addresses for origin or destination can be given as Lat Long Pairs, Location names (usually), or full addresses. Geocodes and other google maps formats should theoretically work, but these are not validated.
+
+
 ## How we built it
 The custom functions are written in Visual Basic for Applications. The functions call the Google Directions API which returns JSON to parse. VBA and Excel are not well equipped for dealing with JSON, so I used a third party library, [VBA-JSON parser](https://github.com/omegastripes/VBA-JSON-parser),  to parse it.
 
