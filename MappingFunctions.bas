@@ -1,7 +1,7 @@
 Attribute VB_Name = "Module1"
 Option Explicit
 
-Function mapDistance(address1 As String, address2 As String, apikey)
+Function mapDistance(address1 As String, address2 As String, apikey, Optional mode As String = "driving")
     Dim httpObject As Object
     Set httpObject = CreateObject("MSXML2.XMLHTTP")
 
@@ -11,7 +11,7 @@ Function mapDistance(address1 As String, address2 As String, apikey)
     
     
     Dim sURL As String
-    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
     
     Debug.Print "test"
     
@@ -46,7 +46,7 @@ Function mapDistance(address1 As String, address2 As String, apikey)
 
 End Function
 
-Function mapDistanceRawVal(address1 As String, address2 As String, apikey)
+Function mapDistanceRawVal(address1 As String, address2 As String, apikey, Optional mode As String = "driving")
     Dim httpObject As Object
     Set httpObject = CreateObject("MSXML2.XMLHTTP")
 
@@ -56,7 +56,7 @@ Function mapDistanceRawVal(address1 As String, address2 As String, apikey)
     
     
     Dim sURL As String
-    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
     
     Debug.Print "test"
     
@@ -92,7 +92,7 @@ Function mapDistanceRawVal(address1 As String, address2 As String, apikey)
 
 End Function
 
-Function mapTime(address1 As String, address2 As String, apikey)
+Function mapTime(address1 As String, address2 As String, apikey, Optional mode As String = "driving")
     Dim httpObject As Object
     Set httpObject = CreateObject("MSXML2.XMLHTTP")
 
@@ -100,9 +100,8 @@ Function mapTime(address1 As String, address2 As String, apikey)
     encodedAddress1 = WorksheetFunction.EncodeURL(address1)
     encodedAddress2 = WorksheetFunction.EncodeURL(address2)
     
-    
     Dim sURL As String
-    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
     
     Debug.Print "test"
     
@@ -136,7 +135,7 @@ Function mapTime(address1 As String, address2 As String, apikey)
     mapTime = durationVal
 
 End Function
-Function mapTimeRawVal(address1 As String, address2 As String, apikey)
+Function mapTimeRawVal(address1 As String, address2 As String, apikey, Optional mode As String = "driving")
     Dim httpObject As Object
     Set httpObject = CreateObject("MSXML2.XMLHTTP")
 
@@ -146,7 +145,7 @@ Function mapTimeRawVal(address1 As String, address2 As String, apikey)
     
     
     Dim sURL As String
-    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
     
     Debug.Print "test"
     
@@ -180,7 +179,7 @@ Function mapTimeRawVal(address1 As String, address2 As String, apikey)
     mapTimeRawVal = durationVal
 
 End Function
-Function mapAllVal(address1 As String, address2 As String, apikey)
+Function mapAllVal(address1 As String, address2 As String, apikey, Optional mode As String = "driving")
     Dim httpObject As Object
     Set httpObject = CreateObject("MSXML2.XMLHTTP")
 
@@ -190,9 +189,9 @@ Function mapAllVal(address1 As String, address2 As String, apikey)
     
     
     Dim sURL As String
-    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+    sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
     
-    'Debug.Print "test"
+    'Debug.Print "mapAllVal"
     
     'Debug.Print sURL
     
@@ -241,10 +240,10 @@ Function mapAllVal(address1 As String, address2 As String, apikey)
 
 End Function
 
-Function mapClosest(address1 As String, addresses As Range, apikey)
-    Debug.Print "Row count: " & addresses.Rows.Count
+Function mapClosest(address1 As String, addresses As Range, apikey, Optional mode As String = "driving")
+    'Debug.Print "Row count: " & addresses.Rows.Count
     'Indexed from 1? Who does that???
-    Debug.Print addresses(1)
+    'Debug.Print addresses(1)
     
     Dim Responses()
     ReDim Responses(addresses.Rows.Count)
@@ -265,7 +264,7 @@ Function mapClosest(address1 As String, addresses As Range, apikey)
         encodedAddress2 = WorksheetFunction.EncodeURL(addresses(i))
         
         Dim sURL As String
-        sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey
+        sURL = "https://maps.googleapis.com/maps/api/directions/json?origin=" & encodedAddress1 & "&destination=" & encodedAddress2 & "&key=" & apikey & "&mode=" & mode
         
         'Debug.Print "test"
         
@@ -302,11 +301,10 @@ Function mapClosest(address1 As String, addresses As Range, apikey)
     Dim durationRawValVal2
     Dim durationRawValExists2
     
-    
     jsonExt.selectElement vJSON, ".routes[0].legs[0].duration.value", durationRawValVal2, durationRawValExists2
     
-    Debug.Print "Shortest duration from json " & durationRawValVal2
-    Debug.Print "Shortest time val: " & shortestTime / 60
+    'Debug.Print "Shortest duration from json " & durationRawValVal2
+    'Debug.Print "Shortest time val: " & shortestTime / 60
     
     'Range to normal VBA array
     'Dim X
